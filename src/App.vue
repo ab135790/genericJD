@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <publicFooter v-if="getCurFooter"/>
+    <publicNav v-if="getCurNav"/>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-    import publicFooter from './components/publicFooter/';
+    import publicNav from './components/publicNav/';
     import { mapGetters } from 'vuex';
     export default {
         name: 'App',
         components: {
-            publicFooter
+            publicNav
         },
         computed: {
             ...mapGetters({
-                getCurFooter: 'moduleBase/getCurFooter'
+                getCurNav: 'moduleBase/getCurNav'
             })
-        },
+        }
     };
 </script>
 

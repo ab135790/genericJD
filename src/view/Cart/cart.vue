@@ -1,6 +1,7 @@
 <template>
     <div>
-        cart
+        <div>1d2as1d2as</div>
+
     </div>
 </template>
 
@@ -11,5 +12,7 @@
 </script>
 
 <style scoped>
-
+    .a {
+        height: 500px;
+    }
 </style>

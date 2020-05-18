@@ -7,7 +7,7 @@ import {
 
 const mutation = {
     [GETCURFOOTERNUM]: (state, index) => {
-        state.curFooterNum = index;
+        state.curNavNum = index;
     }
     // [RECEIVE_NEWHOUSE](state, {newHouse}) {
     //     state.newHouse = newHouse

@@ -6,11 +6,11 @@
                     <img :src="require('@/assets/img/home/home_seckill.png')" alt="" class="img">
                     <strong class="nth plr10">14点场</strong>
                     <div class="time plr10">
-                        <div class="time_hh">00</div>
+                        <div class="time_hh">{{dateTime.hh}}</div>
                         <span class="time_separator mlr5">:</span>
-                        <div class="time_mm">23</div>
+                        <div class="time_mm">{{dateTime.mm}}</div>
                         <span class="time_separator mlr5">:</span>
-                        <div class="time_ss">11</div>
+                        <div class="time_ss">{{dateTime.ss}}</div>
                     </div>
                 </div>
                 <div class="right pr30">
@@ -79,13 +79,51 @@
                         newPrice: '39',
                         originalPrice: '58'
                     }
-                ]
+                ],
+                dateTime: {
+                    dd: 0,
+                    hh: 0,
+                    mm: 0,
+                    ss: 0
+                },
+                endOfTime: '2020/5/19 00:00:00'
             };
         },
+        methods: {
+            countTime() {
+                // 获取当前时间
+                let date = new Date();
+                let now = date.getTime();
+                // 设置截止时间
+                let str = this.endOfTime;
+                let endDate = new Date(str);
+                let end = endDate.getTime();
+                // 时间差
+                let leftTime = end - now;
+                // 定义变量 d, h, m, s保存倒计时的时间
+                var d, h, m, s;
+                if (leftTime >= 0) {
+                    d = Math.floor(leftTime / 1000 / 60 / 60 / 24); // 天
+                    h = Math.floor(leftTime / 1000 / 60 / 60 % 24); // 小时
+                    m = Math.floor(leftTime / 1000 / 60 % 60); // 分
+                    s = Math.floor(leftTime / 1000 % 60); // 秒
+                }
+                // 将倒计时赋值到div中
+                this.$set(this.dateTime, 'dd', d < 10 ? '0' + d : d);
+                this.$set(this.dateTime, 'hh', h < 10 ? '0' + h : h);
+                this.$set(this.dateTime, 'mm', m < 10 ? '0' + m : m);
+                this.$set(this.dateTime, 'ss', s < 10 ? '0' + s : s);
+                // 递归每秒调用countTime方法，显示动态时间效果
+                setTimeout(this.countTime, 1000);
+            }
+        },
+        mounted() {
+            this.countTime();
+        }
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
     @import '~@/assets/css/_mixins.scss';
     .homeSeckill {
         background: $bgc-fff;

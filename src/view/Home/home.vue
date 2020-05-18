@@ -8,6 +8,8 @@
         <HomeDGardenFloorExpo class="mb20"/>
         <HomeScrollNews/>
         <HomeList class="mb20"/>
+        <publicFooter/>
+        <backTop/>
     </div>
 </template>
 <script>
@@ -19,6 +21,8 @@
     import HomeDGardenFloorExpo from './components/HomeDGardenFloorExpo';
     import HomeScrollNews from './components/HomeScrollNews';
     import HomeList from './components/HomeList';
+    import publicFooter from '@/components/publicFooter/';
+    import backTop from '@/components/backTop';
     export default {
         name: 'home',
         data() {
@@ -34,10 +38,9 @@
             HomeNewExclusive,
             HomeDGardenFloorExpo,
             HomeScrollNews,
-            HomeList
-        },
-        methods: {
-
+            HomeList,
+            publicFooter,
+            backTop
         }
     };
 </script>

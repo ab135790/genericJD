@@ -1,104 +1,66 @@
 <template>
-    <div class="footer">
-        <ul class="footer_txt">
-            <li
-                    v-for="(item, index) of footerData"
-                    :key="'item' + index"
-                    class="footer_txt_li"
-                    @click.stop="switchTap(item, index)"
-            >
-                <img :src="item.icon" alt="" v-if="current === index" class="img">
-                <img :src="item.isIcon" alt="" v-else class="img">
+    <div class="publicFooter">
+        <ul class="publicFooter_links plr50 ptb40">
+            <li class="link plr10">登录</li>
+            <li class="link plr10">注册</li>
+            <li class="link plr10">客户服务</li>
+            <li class="link plr10">返回顶部</li>
+        </ul>
+        <ul class="publicFooter_icons plr30">
+            <li class="icon">
+                <img src="https://m.360buyimg.com/mobilecms/jfs/t16423/186/2517573622/5186/75a541f7/5ab1c0deN947bdcba.png" alt="" class="img">
+            </li>
+            <li class="icon">
+                <img src="https://m.360buyimg.com/mobilecms/jfs/t18550/294/898388074/6574/3a8c5413/5ab0b8e9Ne9c48331.png" alt="" class="img">
+            </li>
+            <li class="icon">
+                <img src="https://m.360buyimg.com/mobilecms/jfs/t14581/218/2689195961/4696/203b872a/5ab1c0f2N51c3f1bb.png" alt="" class="img">
             </li>
         </ul>
+        <div class="publicFooter_copyright plr30 ptb20">Copyright © 2004-2019 京东JD.com 版权所有</div>
     </div>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
     export default {
-        name: 'publicFooter',
-        data() {
-            return {
-                footerData: [
-                    {
-                        'icon': require('../../assets/img/footerNav/home.png'),
-                        'isIcon': require('../../assets/img/footerNav/isHome.png'),
-                        'path': '/'
-                    },
-                    {
-                        'icon': require('../../assets/img/footerNav/categroy.png'),
-                        'isIcon': require('../../assets/img/footerNav/isCategroy.png'),
-                        'path': '/cart'
-                    },
-                    {
-                        'icon': require('../../assets/img/footerNav/isSurprise.png'),
-                        'isIcon': require('../../assets/img/footerNav/isSurprise.png'),
-                        'path': '/'
-                    },
-                    {
-                        'icon': require('../../assets/img/footerNav/cart.png'),
-                        'isIcon': require('../../assets/img/footerNav/isCart.png'),
-                        'path': '/'
-                    },
-                    {
-                        'icon': require('../../assets/img/footerNav/isLogin.png'),
-                        'isIcon': require('../../assets/img/footerNav/isLogin.png'),
-                        'path': '/'
-                    }
-                ],
-                current: 0
-            };
-        },
-        methods: {
-            switchTap(item, index) {
-                this.current = index;
-                this.$router.push(item.path);
-                // this.$store.commit('moduleBase/GETCURFOOTERNUM', index);
-            }
-        },
-        computed: {
-            ...mapGetters({
-                getCurFooterNum: 'moduleBase/getCurFooterNum',
-                getCurFooter: 'moduleBase/getCurFooter'
-            })
-        }
+        name: 'index'
     };
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/_mixins.scss';
-    .footer {
-        position: fixed;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        box-shadow: 0 -3px 10px rgba(3, 3, 3, 0.1);
-        bottom: 0;
-        z-index: $navbar_index;
-        background: $color-default;
-        &_txt {
+    @import '@/assets/css/_mixins.scss';
+    .publicFooter {
+        background: $bgc-fff;
+        &_links {
+            border-top: 1px solid rgba(204, 204, 204, .2);
             display: flex;
-            justify-content: space-around;
             align-items: center;
-            height: 100%;
-            &_li {
-                width: 25%;
-                height: 100%;
+            .link {
                 text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                font-size: 24px;
-                .icon {
-                    font-size: 48px;
-                }
+                width: 25%;
+                font-size: 28px;
+                color: $color_999;
+            }
+        }
+        &_icons {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-top: 1px solid rgba(204, 204, 204, .5);
+            border-bottom: 1px solid rgba(204, 204, 204, .5);
+            .icon {
+                width: 33.3%;
+                @include flex-center();
                 .img {
                     width: 120px;
-                    height: 92px;
+                    height: 120px;
                 }
             }
+        }
+        &_copyright {
+            font-size: 24px;
+            color: $color_999;
+            text-align: center;
         }
     }
 </style>
